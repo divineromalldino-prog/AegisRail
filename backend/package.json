@@ -1,0 +1,14 @@
+{
+  "name": "aegisrail-backend",
+  "version": "1.0.0",
+  "description": "AegisRail Payment Orchestration API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": ["payments", "api", "africa", "fintech"],
+  "author": "Terry",
+  "license": "ISC",
+  "type": "commonjs"
+}
