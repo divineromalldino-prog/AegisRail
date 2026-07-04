@@ -3,6 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
 
+const merchantRoutes = require('./routes/merchants');
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -16,7 +18,9 @@ app.get('/', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+app.use('/v1/merchants', merchantRoutes);
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`AegisRail running on port ${PORT}`);
 });
