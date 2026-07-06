@@ -5,7 +5,9 @@ require('dotenv').config();
 
 const merchantRoutes = require('./routes/merchants');
 const authRoutes = require('./routes/auth');
+const chargesRoutes = require('./routes/charges');
 const authenticate = require('./middleware/authenticate');
+const { getProviderStatus } = require('./services/routing/router');
 
 const app = express();
 app.use(express.json());
@@ -22,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/v1/merchants', merchantRoutes);
 app.use('/v1/auth', authRoutes);
+app.use('/v1/charges', chargesRoutes);
 
 app.get('/v1/dashboard', authenticate, (req, res) => {
   res.json({
@@ -33,6 +36,13 @@ app.get('/v1/dashboard', authenticate, (req, res) => {
       api_key: req.merchant.api_key,
       member_since: req.merchant.created_at
     }
+  });
+});
+
+app.get('/v1/providers', (req, res) => {
+  res.json({
+    success: true,
+    data: getProviderStatus()
   });
 });
 
