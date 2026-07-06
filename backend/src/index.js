@@ -6,6 +6,7 @@ require('dotenv').config();
 const merchantRoutes = require('./routes/merchants');
 const authRoutes = require('./routes/auth');
 const chargesRoutes = require('./routes/charges');
+const transactionsRoutes = require('./routes/transactions');
 const authenticate = require('./middleware/authenticate');
 const { getProviderStatus } = require('./services/routing/router');
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 app.use('/v1/merchants', merchantRoutes);
 app.use('/v1/auth', authRoutes);
 app.use('/v1/charges', chargesRoutes);
+app.use('/v1/transactions', transactionsRoutes);
 
 app.get('/v1/dashboard', authenticate, (req, res) => {
   res.json({
